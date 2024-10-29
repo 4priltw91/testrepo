@@ -31,10 +31,10 @@ jobs:
     - name: Deploy with Git Pull and Docker Compose
       run: |
         ssh -v -o StrictHostKeyChecking=no -p 40022 aceit@182.217.20.249 << 'EOF'
-          cd /home/test1/ace_it_project_frontend/aceit  # 서버의 프로젝트 경로로 이동
-          git pull origin main  # 최신 코드 가져오기
-          docker-compose down  # 기존 컨테이너 중지
-          docker-compose up -d --build  # 컨테이너 빌드 및 실행
+          cd /home/test1/ace_it_project_frontend/aceit
+          git pull origin main
+          docker-compose down
+          docker-compose up -d --build
         EOF
       env:
         DOCKER_HOST: "ssh://aceit@182.217.20.249"
