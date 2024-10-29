@@ -26,7 +26,7 @@ jobs:
 
     - name: Test SSH Connection
       run: |
-        ssh -v -o StrictHostKeyChecking=no -p 40022 aceit@182.217.20.249 'echo "SSH Connection Successful"'
+        ssh -v -o StrictHostKeyChecking=no -p 40022 root@182.217.20.249 'echo "SSH Connection Successful"'
 
     - name: Deploy with Docker Compose
       run: |
@@ -36,4 +36,4 @@ jobs:
           docker-compose up -d --build  # 컨테이너 빌드 및 실행
         EOF
       env:
-        DOCKER_HOST: "ssh://aceit@182.217.20.249"
+        DOCKER_HOST: "ssh://root@182.217.20.249"
