@@ -60,7 +60,7 @@ const Header = () => {
         <img src="/AdobeStock_2.jpeg" alt="배너 이미지" className="banner-image"/>
         <div className="hero-text-overlay">
 
-          <h1 className="display-4">Welcome toadzzzzz ACE IT</h1>
+          <h1 className="display-4">Welcome asd ACE IT</h1>
           <p className="lead">FMS 시설물 모니터링, 전산실 구축 및 전문 솔루션 제공</p>
 
           {/* Bootstrap Carousel to rotate cards */}
