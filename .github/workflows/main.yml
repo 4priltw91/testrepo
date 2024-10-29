@@ -1,0 +1,27 @@
+name: Deploy with Docker Compose
+
+on:
+  push:
+    branches:
+      - main  # main 브랜치에 push가 있을 때만 실행
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SECRET_KEY }}
+
+    - name: Deploy with Docker Compose
+      env:
+        DOCKER_HOST: "ssh://aceit@182.217.20.249"  # user는 서버의 사용자명으로 변경
+      run: |
+        cd /home/test1  # 프로젝트 경로로 이동
+        docker-compose down  # 기존 컨테이너 중지
+        docker-compose up -d --build  # 컨테이너 빌드 및 실행
