@@ -16,7 +16,7 @@ jobs:
     - name: Set up SSH
       uses: webfactory/ssh-agent@v0.5.3
       with:
-        ssh-private-key: ${{ secrets.SECRET_KYE }}  # 정확한 Secret 이름 사용
+        ssh-private-key: ${{ secrets.SECRET_KEY }}  # 정확한 Secret 이름 사용
 
     - name: Add SSH key to known hosts
       run: ssh-keyscan -p 40022 182.217.20.249 >> ~/.ssh/known_hosts
@@ -30,7 +30,7 @@ jobs:
 
     - name: Deploy with Docker Compose
       run: |
-        ssh -o StrictHostKeyChecking=no -p 40022 aceit@182.217.20.249 << 'EOF'
+        ssh -v -o StrictHostKeyChecking=no -p 40022 aceit@182.217.20.249 << 'EOF'
           cd /home/test1  # 서버의 프로젝트 경로로 이동
           docker-compose down  # 기존 컨테이너 중지
           docker-compose up -d --build  # 컨테이너 빌드 및 실행
