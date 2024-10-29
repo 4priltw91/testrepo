@@ -1,4 +1,4 @@
-name: Deploy with Git Pull and Docker Compose
+name: Deploy with Git Reset and Docker Compose
 
 on:
   push:
@@ -28,11 +28,13 @@ jobs:
       run: |
         ssh -v -o StrictHostKeyChecking=no -p 40022 aceit@182.217.20.249 'echo "SSH Connection Successful"'
 
-    - name: Deploy with Git Pull and Docker Compose
+    - name: Deploy with Git Reset and Docker Compose
       run: |
         ssh -v -o StrictHostKeyChecking=no -p 40022 aceit@182.217.20.249 << 'EOF'
-          cd /home/test1/ace_it_project_frontend/aceit
-          git pull origin main
+          set -e  # 오류 발생 시 스크립트 중단
+          cd /home/test1/ace_it_project_frontend/aceit  # 서버의 프로젝트 경로로 이동
+          git fetch origin
+          git reset --hard origin/main  # 로컬을 origin/main과 동기화
           docker-compose down
           docker-compose up -d --build
         EOF
