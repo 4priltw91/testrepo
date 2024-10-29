@@ -16,7 +16,7 @@ jobs:
     - name: Set up SSH
       uses: webfactory/ssh-agent@v0.5.3
       with:
-        ssh-private-key: ${{ SECRET_KEY }}  # 정확한 Secret 이름 사용
+        ssh-private-key: ${{ secrets.SECRET_KEY }}  # 정확한 Secret 이름 사용
 
     - name: Add SSH key to known hosts
       run: ssh-keyscan -p 40022 182.217.20.249 >> ~/.ssh/known_hosts
