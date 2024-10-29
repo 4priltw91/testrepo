@@ -20,10 +20,10 @@ jobs:
 
     - name: Deploy with Docker Compose
       run: |
-        ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa aceit@182.217.20.249 << 'EOF'
+        ssh -o StrictHostKeyChecking=no aceit@182.217.20.249 << 'EOF'
           cd /home/test1  # 서버의 프로젝트 경로로 이동
           docker-compose down  # 기존 컨테이너 중지
           docker-compose up -d --build  # 컨테이너 빌드 및 실행
         EOF
       env:
-        DOCKER_HOST: "ssh://aceit@182.217.20.249"  # user와 your_server_ip를 실제 값으로 변경
+        DOCKER_HOST: "ssh://aceit@182.217.20.249"
